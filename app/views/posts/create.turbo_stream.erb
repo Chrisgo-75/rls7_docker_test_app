@@ -1,0 +1,6 @@
+<%= turbo_stream.append @post do %>
+  <tr>
+    <td><%= @post.title %></td>
+    <td><%= @post.content %></td>
+  </tr>
+<% end %>
