@@ -67,4 +67,13 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  # Rails server 'missing secret_key_base':
+  # This has been added by developer b/c on the Rails servers, Rails app isn't grabbing
+  # 'secret_key_base' from Rails server Env successfully. So ended up manually helping
+  # Rails!
+  # config.secret_key_base = ENV['SECRET_KEY_BASE']
+  # Instead of using Figaro gem, have removed it and am assigning value within application.
+  config.secret_key_base = ENV.fetch('SECRET_KEY_BASE')
+
 end
