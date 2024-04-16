@@ -1,0 +1,35 @@
+version: "3.8"
+
+# compose project name - this is needed in order to successfully run
+#                        eops_staging and eops_prod on the same server.
+#                        Project name, distinguishes staging vs production
+#                        services => app.
+name: rls7_test_app_dev
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rls7_test_app_dev:latest
+    container_name: rls7_test_app_dev
+    environment:
+      # Represent WEBrick
+      #PIDFILE: /tmp/pids/server.pid
+      # Represent Passenger
+      PIDFILE: /tmp/pids/passenger.3000.pid
+      RAILS_ENV: development
+      TZ: "America/Chicago"
+    # A volume is set up that mounts the current path of the host machine to
+    # the folder /usr/src/app in the container.
+    # The volume is essential so that when we generate the Rails application in
+    # the container, the template files will persist in the host filesystem.
+    volumes:
+      - .:/usr/src/app
+    tmpfs:
+      # tmpfs mount  is temporary and persists in the host memory.
+      # When container stops, the tmpfs mount is removed, and all files in it will be gone.
+      - /tmp/pids/
+    ports:
+      - "3035:3000"
+

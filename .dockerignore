@@ -1,0 +1,71 @@
+# See https://docs.docker.com/engine/reference/builder/#dockerignore-file for more about ignoring files.
+
+# Ignore git directory.
+/.git/
+
+#
+# Vim Editor temp files
+#
+*.swp
+*.swo
+
+#
+# RubyMine Editor temp files
+#
+.idea
+
+.vscode
+
+# Ignore bundler config.
+/.bundle
+
+# Ignore all environment files (except templates).
+/.env*
+!/.env*.erb
+
+# Ignore all default key files.
+/config/master.key
+/config/credentials/*.key
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+#
+# OS X
+#
+.DS_Store
+.project
+
+#
+# Rails
+#
+.byebug_history
+!.env.example
+log/*
+!log/.keep
+app/assets/builds/*
+!app/assets/builds/.keep
+node_modules/
+public/assets/
+storage/*
+!storage/.keep
+temp/*
+!tmp/.keep
+!tmp/pids/
+!tmp/pids/.keep
+db/*.sqlite3
+db/*.sqlite3-journal
+.bundle
+.byebug_history
+.dockerignore
+.rspec
+app.env
+!.env.example
+config/master.key
+docker-compose.override.yml
+yarn-error.log
+yarn-debug.log*
+.yarn-integrity
