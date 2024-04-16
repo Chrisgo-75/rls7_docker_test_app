@@ -14,7 +14,7 @@ set -m
 cp -r /usr/src/cache/node_modules/. /usr/src/app/node_modules/
 
 # Compile Rails Assets at runtime.
-#RAILS_ENV=development bundle exec rake assets:precompile
+RAILS_ENV=development bundle exec rake assets:precompile
 
 # Start the primary process and put it in the background
 bundle exec passenger start &
