@@ -2,6 +2,11 @@
 
 <h1>Posts</h1>
 
+<div id="post_form">
+  <%= render "form", post: Post.new %>
+</div>
+
+<!-- 'id="posts"' will be the target of the turbo stream -->
 <div id="posts">
   <% @posts.each do |post| %>
     <%= render post %>

@@ -25,10 +25,21 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.turbo_stream { render turbo_stream: turbo_stream.append(@post) }
+        format.turbo_stream do
+          Rails.logger.info('******* #create turbo_stream has been accessed.')
+          render turbo_stream: [
+            # 'id' target       vvvvv
+            turbo_stream.append(:posts, @post),
+            turbo_stream.update(:post_form, partial: "form", locals: {post: Post.new}),
+          ]
+        end
         format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
         format.json { render :show, status: :created, location: @post }
       else
+        format.turbo_stream do
+          # render errors
+          render turbo_steam: turbo_steam.update(:post_form, partial: "form", locals: {post: @post})
+        end
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
