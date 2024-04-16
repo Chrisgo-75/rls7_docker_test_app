@@ -26,6 +26,8 @@ services:
     # the container, the template files will persist in the host filesystem.
     volumes:
       - .:/usr/src/app
+    env_file:
+      - app.env
     tmpfs:
       # tmpfs mount  is temporary and persists in the host memory.
       # When container stops, the tmpfs mount is removed, and all files in it will be gone.
